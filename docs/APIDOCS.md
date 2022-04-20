@@ -15,7 +15,7 @@ _(Explainer on addresses: [link](https://docs.filecoin.io/about-filecoin/how-fil
 <br/>
 
 
-#### ▶️ **Example usage (GraphQL)**
+#### **Example usage (GraphQL)**
 
 “Convert” an address (look up the address in the short/robust format)
 ```
@@ -52,7 +52,7 @@ The `transactions` table contains transactions data, formatted to fit a reportin
 
 <br/>
 
-#### ▶️ **Example usage (GraphQL)**
+#### **Example usage (GraphQL)**
 Find all transactions in which a certain address has participated:
 ```
 query TransactionsGetByAddress {
@@ -124,7 +124,7 @@ The `vesting` table contains vesting details for multisig wallets.
 <br/>
 
 
-#### ▶️ **Example usage (GraphQL)**
+#### **Example usage (GraphQL)**
 Look up vesting data for an address
 ```
 query VestingGetByAddress {
@@ -171,7 +171,7 @@ Auxiliary table to simplify querying by block date (as the dates are stored in a
 <br/>
 
 
-#### ▶️ **Example usage (GraphQL)**
+#### **Example usage (GraphQL)**
 Find all multisigs an address is a signer of (or has been proposed as a signer)
 ```
 query MsigTransactionsGetByAddedSigner {
