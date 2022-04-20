@@ -56,7 +56,9 @@ The `transactions` table contains transactions data, formatted to fit a reportin
 Find all transactions in which a certain address has participated:
 ```
 query TransactionsGetByAddress {
-  finance_transactions(where: {_or: [{tx_from: {_eq: "f3rrwmsdclcwsy3prwjd..."}}, {tx_from: {_eq: "f0869..."}}]}) {
+  finance_transactions(where: {_or: 
+  [{tx_from: {_eq: "f3rrwmsdclcwsy3prwjd..."}}, 
+  {tx_from: {_eq: "f0869..."}}]}) {
     tx_from
     amount
     height
@@ -181,8 +183,9 @@ query MsigTransactionsGetByAddedSigner {
 Find all multisigs an address is a signer of 
 ```
 query MsigGetBySigner {
-  finance_msig_transactions(where: {signer_in: {_eq: "f3vqxn4nq..."}, tx_type: {_in: ["AddSigner", "SwapSigner"]}}) {
-    multisig
+  finance_msig_transactions(where: {signer_in: {_eq: "f3vqxn4nq..."}, 
+    tx_type: {_in: ["AddSigner", "SwapSigner"]}}) {
+        multisig
   }
 }
 ```
@@ -190,8 +193,9 @@ query MsigGetBySigner {
 Find all multisigs an address has been removed from
 ```
 query MsigTransactionsGetByRemovedSigner {
-  finance_msig_transactions(where: {signer_out: {_eq: "f020..."}, tx_type: {_in: ["RemoveSigner", "SwapSigner"]}}) {
-    multisig
+  finance_msig_transactions(where: 
+    {signer_out: {_eq: "f020..."}, tx_type: {_in: ["RemoveSigner", "SwapSigner"]}}) {
+        multisig
   }
 }
 ```
