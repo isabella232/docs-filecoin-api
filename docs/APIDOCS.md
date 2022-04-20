@@ -47,8 +47,8 @@ The `transactions` table contains transactions data, formatted to fit a reportin
 | Amount       | Transaction value |
 | Status       | Transaction status (if the transaction was successful or not) |
 | Tx_type      | Transaction type (method) |
-| Tx_metadata _(optional)_       | Includes additional info on the Tx (currently this refers to the method of the Tx a fee belongs to) |
-| Tx_params _(optional)_      | If any additional user-generated input has been added to the Tx _(currently parsed params are only available for Txs with the following format: PREFIX:WHATEVER )_ |
+| Tx_metadata (optional)       | Includes additional info on the Tx (currently this refers to the method of the Tx a fee belongs to) |
+| Tx_params (optional)      | If any additional user-generated input has been added to the Tx _(currently parsed params are only available for Txs with the following format: PREFIX:WHATEVER )_ |
 
 <br/>
 
