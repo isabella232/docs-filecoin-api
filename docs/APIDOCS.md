@@ -17,7 +17,7 @@ _(Explainer on addresses: [link](https://docs.filecoin.io/about-filecoin/how-fil
 
 #### ▶️ **Example usage (GraphQL)**
 
-* “Convert” an address (look up the address in the short/robust format)
+“Convert” an address (look up the address in the short/robust format)
 ```
 query AddressesGetRobustByShort {
   finance_addresses(where: {short: {_eq: "f025..."}}) {
@@ -53,7 +53,7 @@ The `transactions` table contains transactions data, formatted to fit a reportin
 <br/>
 
 #### ▶️ **Example usage (GraphQL)**
-* Find all transactions in which a certain address has participated:
+Find all transactions in which a certain address has participated:
 ```
 query TransactionsGetByAddress {
   finance_transactions(where: {_or: [{tx_from: {_eq: "f3rrwmsdclcwsy3prwjd..."}}, {tx_from: {_eq: "f0869..."}}]}) {
@@ -71,7 +71,7 @@ query TransactionsGetByAddress {
 }
 ```
 
-* Get transactions at a certain height (or filter by a single column):
+Get transactions at a certain height (or filter by a single column):
 ```
 query TransactionsGetByHeight {
   finance_transactions(where: {height: {_eq: "231866"}}) {
@@ -88,7 +88,7 @@ query TransactionsGetByHeight {
 }
 ```
 
-* Filter by a tx_params prefix:
+Filter by a tx_params prefix:
 ```
 query TransactionsGetByParams {
   finance_transactions(where: {tx_params: {_like: "SOMEPREFIX%"}}) {
@@ -123,7 +123,7 @@ The `vesting` table contains vesting details for multisig wallets.
 
 
 #### ▶️ **Example usage (GraphQL)**
-* Look up vesting data for an address
+Look up vesting data for an address
 ```
 query VestingGetByAddress {
   finance_vesting(where: {address: {_eq: "f096..."}}) {
@@ -138,7 +138,6 @@ query VestingGetByAddress {
 
 <br/>
 
-## Auxiliary tables
 ## BLOCKS_DATES
 
 Auxiliary table to simplify querying by block date (as the dates are stored in a human-readable format instead of a UNIX timestamp)
@@ -171,7 +170,7 @@ Auxiliary table to simplify querying by block date (as the dates are stored in a
 
 
 #### ▶️ **Example usage (GraphQL)**
-* Find all multisigs an address is a signer of (or has been proposed as a signer)
+Find all multisigs an address is a signer of (or has been proposed as a signer)
 ```
 query MsigTransactionsGetByAddedSigner {
   finance_msig_transactions(where: {signer_in: {_eq: "f3vqxn4nq..."}}) {
@@ -179,7 +178,7 @@ query MsigTransactionsGetByAddedSigner {
   }
 }
 ```
-* Find all multisigs an address is a signer of 
+Find all multisigs an address is a signer of 
 ```
 query MsigGetBySigner {
   finance_msig_transactions(where: {signer_in: {_eq: "f3vqxn4nq..."}, tx_type: {_in: ["AddSigner", "SwapSigner"]}}) {
@@ -188,7 +187,7 @@ query MsigGetBySigner {
 }
 ```
 
-* Find all multisigs an address has been removed from
+Find all multisigs an address has been removed from
 ```
 query MsigTransactionsGetByRemovedSigner {
   finance_msig_transactions(where: {signer_out: {_eq: "f020..."}, tx_type: {_in: ["RemoveSigner", "SwapSigner"]}}) {
