@@ -14,18 +14,6 @@ _(Explainer on addresses: [link](https://docs.filecoin.io/about-filecoin/how-fil
 | ID            | Additional field to aid with ordering and foreign key constraints |
 <br/>
 
-#### ▶️ **Example usage (SQL)**
-
-* “Convert” an address (look up the address in the short/robust format)
-```sql
-SELECT robust from finance.addresses WHERE short = 'f025...';
-
-SELECT short from finance.addresses WHERE robust = 'f3u4awxhbhz7jb...';
-```
-
-(See the “Transactions” section for an example of how to use addresses as an auxiliary table)
-
-<br/>
 
 #### ▶️ **Example usage (GraphQL)**
 
@@ -62,41 +50,6 @@ The `transactions` table contains transactions data, formatted to fit a reportin
 | Tx_metadata _(optional)_       | Includes additional info on the Tx (currently this refers to the method of the Tx a fee belongs to) |
 | Tx_params _(optional)_      | If any additional user-generated input has been added to the Tx _(currently parsed params are only available for Txs with the following format: PREFIX:WHATEVER )_ |
 
-<br/>
-
-#### ▶️ **Example usage (SQL)**
-* Find all transactions in which a certain address has participated:
-```sql
-SELECT * FROM finance.transactions WHERE tx_from = 'f025...' OR tx_to = 'f025...';
-```
-
-* Find outward transactions from an address:
-```sql
-SELECT * FROM finance.transactions WHERE tx_from = 'f025...' OR tx_to = (SELECT robust from finance.addresses WHERE short = 'f025...');
-```
-
-(Note: for inward transactions, look up the address in the tx_to column)
-
-* Filter transactions by date
-```sql
-WITH search_heights AS (
-    SELECT height FROM finance.blocks_dates
-    WHERE timestamp BETWEEN TO_DATE('2021-07-31', 'YYYY-MM-DD')
-              AND TO_DATE('2021-08-01', 'YYYY-MM-DD')
-)
-SELECT * FROM finance.transactions
-WHERE height IN (SELECT height FROM search_heights)
-```
-
-* Get transactions at a certain height (or filter by a single column):
-```sql
-SELECT * FROM finance.transactions WHERE height = 148888;
-```
-
-* Filter by a tx_params prefix:
-```sql
-SELECT * FROM finance.transactions WHERE tx_params LIKE 'SOMEPREFIX%';
-```
 <br/>
 
 #### ▶️ **Example usage (GraphQL)**
@@ -168,18 +121,6 @@ The `vesting` table contains vesting details for multisig wallets.
 
 <br/>
 
-#### ▶️ **Example usage (SQL)**
-* Look up vesting data for an address
-```sql
-SELECT * FROM finance.vesting WHERE address = 'f096...'
-
-
-// If we only know the robust version
-SELECT * FROM finance.vesting WHERE address = 
-(SELECT short FROM finance.addresses WHERE robust = 'f2bedy6otpq...');
-```
-
-<br/>
 
 #### ▶️ **Example usage (GraphQL)**
 * Look up vesting data for an address
@@ -209,18 +150,6 @@ Auxiliary table to simplify querying by block date (as the dates are stored in a
 
 <br/>
 
-#### ▶️ **Example usage (SQL)**
-* Filter transactions by date
-```sql
-WITH search_heights AS (
-    SELECT height FROM finance.blocks_dates
-    WHERE timestamp BETWEEN TO_DATE('2021-07-31', 'YYYY-MM-DD')
-              AND TO_DATE('2021-08-01', 'YYYY-MM-DD')
-)
-SELECT * FROM finance.transactions
-WHERE height IN (SELECT height FROM search_heights)
-```
-<br/>
 
 ## MSIG_TRANSACTIONS
 
@@ -240,23 +169,6 @@ WHERE height IN (SELECT height FROM search_heights)
 
 <br/>
 
-#### ▶️ **Example usage (SQL)**
-* Find all multisigs an address is a signer of (or has been proposed as a signer)
-```sql
-SELECT * FROM finance.msig_transactions WHERE signer_in = 'f3vqxn4nq...';
-```
-* Find all multisigs an address is a signer of 
-```sql
-SELECT multisig FROM finance.msig_transactions WHERE signer_in = 'f3vqxn4nq...'
-AND (tx_type IN ('AddSigner', 'SwapSigner'));
-```
-* Find all multisigs an address has been removed from
-```sql
-SELECT multisig FROM finance.msig_transactions WHERE signer_out = 'f3vqxn4nq...'
-AND (tx_type IN ('RemoveSigner', 'SwapSigner'));
-```
-
-<br/>
 
 #### ▶️ **Example usage (GraphQL)**
 * Find all multisigs an address is a signer of (or has been proposed as a signer)
