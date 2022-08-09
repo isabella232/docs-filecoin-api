@@ -41,7 +41,7 @@ query AddressesGetShortByRobust {
 <br/>
 
 ## TRANSACTIONS
-The `transactions` table contains the transactions made by the builtin actors across the entire Filecoin blockchain history. The following table shows the currently supported
+The `transactions` table contains the transactions made by every address across the entire Filecoin blockchain history. The following table shows the currently supported
 Actors and their methods:
 
 | Actor                | Methods                                                                                                                                                                      |
@@ -216,6 +216,11 @@ query GetTipsetTimestamp {
 ## MSIG_TRANSACTIONS
 
 The `msig_transactions` table contains detailed information about the transactions that interacted with multisig addresses.
+
+The following list shows the current supported multisig methods:
+
+    "SwapSigner", "AddSigner", "RemoveSigner",
+    "Propose", "Approve", "Cancel", "Send", "Exec"
 
 ### Table description:
 | Column name       | Description                                                                   |
