@@ -65,7 +65,7 @@ Actors and their methods:
 | `tx_hash`                | Transaction hash (identifier)                                                                                                                                      |
 | `tx_from`                | Sender address                                                                                                                                                     |
 | `tx_to`                  | Receiver address                                                                                                                                                   |
-| `amount`                 | Transaction value                                                                                                                                                  |
+| `amount`                 | Transaction value [FIL]                                                                                                                                            |
 | `status`                 | Transaction status (if the transaction was successful or not)                                                                                                      |
 | `tx_type`                | Transaction type (method name)                                                                                                                                     |
 | `tx_metadata` (optional) | Includes additional info on the Tx (currently this refers to the method of the Tx a fee belongs to)                                                                |
@@ -164,7 +164,7 @@ The `vesting` table contains vesting details for multisig wallets.
 | Column name       | Description                                                                                                     |
 |:------------------|:----------------------------------------------------------------------------------------------------------------|
 | `address`         | Filecoin account address                                                                                        |
-| `initial_balance` | Inicial locked vesting amount                                                                                   |
+| `initial_balance` | Inicial locked vesting amount [FIL]                                                                             |
 | `start_epoch`     | Tipset height in which the vesting period starts                                                                |
 | `unlock_duration` | How many block epochs it will take to unlock the full amount                                                    |
 | `unlock_height`   | Tipset height at which the full vesting amount will be released (calculated as `start_epoch + unlock_duration`) |
